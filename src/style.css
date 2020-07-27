@@ -29,11 +29,22 @@ h1 {
 }
 
 .dot {
-    fill: lightgreen;
+    /* fill: lightgreen; */
     stroke: black;
     stroke-width: 2;
 }
 
-/* .dot:hover {
-    fill: rgb(163, 203, 235);
-} */
+.dot:hover {
+    /* fill: darkred; */
+}
+
+.tooltip {
+    position: absolute;
+    text-align: left;
+    padding: 0.2rem;
+    background: #ccc;
+    border-radius: 8px;
+    box-shadow: 10px 10px 20px #333;
+    pointer-events: none;
+    font-size: 0.7rem;
+}
