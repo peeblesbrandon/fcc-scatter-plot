@@ -28,9 +28,11 @@ h1 {
     margin-top: 20px;
 }
 
-/* .dot {
-    fill: steelblue;
-} */
+.dot {
+    fill: lightgreen;
+    stroke: black;
+    stroke-width: 2;
+}
 
 /* .dot:hover {
     fill: rgb(163, 203, 235);
