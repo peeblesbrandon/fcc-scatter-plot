@@ -14,6 +14,8 @@ var tooltipDiv = d3.select("#chart")
                     .attr("class", "tooltip")
                     .style("opacity", 0);
 
+
+
 d3.json("https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json", function(err, dataset) {
     if (err) {
         throw err;
@@ -64,43 +66,43 @@ d3.json("https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
         .call(yAxis)
         .attr("transform", "translate(" + padding + ", 0)")
         .attr("id", "y-axis");
-    
-        // DOTS
-        svg.selectAll(".dot")
-            .data(dataset)
-            .enter()
-            .append("circle")
-            .attr("class", "dot")
-            .attr("data-xvalue", (d) => parseYear(d.Year))
-            .attr("data-yvalue", (d) => parseTime(d.Time))
-            .attr("cx", (d) => xScale(parseYear(d.Year)))
-            .attr("cy", (d) => yScale(parseTime(d.Time)))
-            .attr("r", 7)
-            .style("fill", (d) => {
-                return d.Doping === "" ? "lightgreen" : "darkred";
-            })
-            .on("mouseover", function(d) {
-                d3.select(this).transition()
-                    .duration("200")
-                    .attr("r", 15);
-                tooltipDiv.transition()
-                    .duration("200")
-                    .style("opacity", 0.9)
-                tooltipDiv.html("<b>Name: </b>" + d.Name + " (" + d.Nationality + ")"
-                    + "</br><strong>Year: </b>" + d.Year + ", <b>Time: </b>" + d.Time
-                    + (d.Doping === "" ? "" : '</br><b>Summary: ' + d.Doping))
-                    .style("left", (d3.event.pageX + 25) + "px")
-                    .style("top", (d3.event.pageY - 20) + "px")
-                    .attr("data-year", parseYear(d.Year));
-            })
-            .on("mouseout", function(d) {
-                d3.select(this).transition()
-                    .duration("200")
-                    .attr("r", 7);
-                tooltipDiv.transition()
-                    .duration("200")
-                    .style("opacity", 0);
-            });
+
+    // DOTS
+    svg.selectAll(".dot")
+        .data(dataset)
+        .enter()
+        .append("circle")
+        .attr("class", "dot")
+        .attr("data-xvalue", (d) => parseYear(d.Year))
+        .attr("data-yvalue", (d) => parseTime(d.Time))
+        .attr("cx", (d) => xScale(parseYear(d.Year)))
+        .attr("cy", (d) => yScale(parseTime(d.Time)))
+        .attr("r", 7)
+        .style("fill", (d) => {
+            return d.Doping === "" ? "lightgreen" : "darkred";
+        })
+        .on("mouseover", function(d) {
+            d3.select(this).transition()
+                .duration("200")
+                .attr("r", 15);
+            tooltipDiv.transition()
+                .duration("200")
+                .style("opacity", 0.9)
+            tooltipDiv.html("<b>Name: </b>" + d.Name + " (" + d.Nationality + ")"
+                + "</br><strong>Year: </b>" + d.Year + ", <b>Time: </b>" + d.Time
+                + (d.Doping === "" ? "" : '</br><b>Summary: ' + d.Doping))
+                .style("left", (d3.event.pageX + 25) + "px")
+                .style("top", (d3.event.pageY - 20) + "px")
+                .attr("data-year", parseYear(d.Year));
+        })
+        .on("mouseout", function(d) {
+            d3.select(this).transition()
+                .duration("200")
+                .attr("r", 7);
+            tooltipDiv.transition()
+                .duration("200")
+                .style("opacity", 0);
+        });
 
     
 });
